@@ -1,0 +1,6 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home2/ennovat1/public_html/
+    - /bin/rm -rf $DEPLOYPATH/*
+    - /bin/cp -r out/* $DEPLOYPATH
