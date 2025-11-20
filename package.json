@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@lottiefiles/dotlottie-react": "^0.17.7",
     "@splinetool/react-spline": "^4.1.0",
     "@stripe/react-stripe-js": "4.0.2",
     "@supabase/supabase-js": "2.57.4",
