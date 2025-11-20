@@ -423,9 +423,7 @@ export default function Home() {
                         </button> */}
                     </div>
 
-                    <div className="relative h-[500px]">
-
-                    </div>
+                    <div className="relative h-[500px]"></div>
                 </div>
 
             </section>
