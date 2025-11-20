@@ -183,7 +183,7 @@ export default function Home() {
                         <div className="w-10 h-10">
                             <img
                                 className="w-full h-full object-contain"
-                                src="/public/logo.svg"
+                                src="/logo.svg"
                                 alt="futuristic circular tech logo, ENX initials, glowing blue and purple neon lines on a dark background"
                             />
                         </div>
@@ -399,7 +399,7 @@ export default function Home() {
 
                 {/* BACKGROUND VIDEO */}
                 <video
-                    src='/public/20220701_095229.mp4'
+                    src='/20220701_095229.mp4'
                     autoPlay
                     muted
                     loop
@@ -547,7 +547,7 @@ export default function Home() {
                                 <div className="w-8 h-8">
                                     <img
                                         className="w-full h-full object-contain"
-                                        src="/public/logo.svg"
+                                        src="/logo.svg"
                                         alt="futuristic circular tech logo, ENX initials, glowing blue and purple neon lines on a dark background"
                                     />
                                 </div>
