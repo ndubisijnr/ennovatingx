@@ -178,7 +178,7 @@ export default function Home() {
         <div className={`${theme.bg} ${theme.text} min-h-screen font-sans transition-colors duration-500`}>
             {/* Header */}
             <header className={`fixed top-0 left-0 w-full ${theme.header} backdrop-blur-md z-50 transition-colors duration-500`}>
-                <nav className="container mx-auto px-6 py-4 flex gap-5 justify-between items-center">
+                <nav className="container mx-auto  px-6 py-4 flex gap-5 justify-between items-center">
                     <div className="flex items-center space-x-2">
                         <div className="w-10 h-10">
                             <img
@@ -190,6 +190,7 @@ export default function Home() {
                         <span className="text-xl font-bold tracking-wider">ENNOVATINGX</span>
                     </div>
 
+
                     <div className="hidden md:flex items-center space-x-8  w-full ">
                         <div className={`hover:${theme.accent} w-1 border border-black dark:border-white h-6 bg-black dark:bg-white transition-colors duration-300 cursor-pointer font-extrabold`}></div>
                         <div className="group">
@@ -197,7 +198,7 @@ export default function Home() {
                                 More <ChevronDown className="ml-2 w-3 h-3" />
                             </button>
                             <div className={`absolute top-full w-full left-0 ${theme.bgCard} rounded-lg shadow-xl w-48 p-2 opacity-0 invisible group-hover:opacity-80 group-hover:visible transition-all duration-300`}>
-                                <div className="max-w-4xl mx-auto p-6">
+                                <div className="w-full mx-auto p-6">
                                     {/* Grid Layout */}
                                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                                         {/* Animation Section */}
@@ -244,6 +245,9 @@ export default function Home() {
                         </div>
                     </div>
 
+                
+                    
+
                     <div className="flex items-center space-x-4">
                         <button
                             onClick={toggleTheme}
@@ -259,6 +263,51 @@ export default function Home() {
                         </button>
                     </div>
                 </nav>
+                 {showMobileMenu && ( <div className="items-center space-x-8  w-full ">
+                          <div className="w-full p-6">
+                                    {/* Grid Layout */}
+                                    <div className=" gap-8">
+                                        {/* Animation Section */}
+                                        <div className="flex items-start justify-center md:col-span-1">
+                                            <div className="w-48 h-48">
+                                                <DotLottieReact
+                                                    src="https://lottie.host/159397d6-164c-4a40-b321-20082ac9efc1/Xsnn0gyoVb.lottie"
+                                                    loop
+                                                    autoplay
+                                                />
+                                            </div>
+                                        </div>
+
+                                        {/* Navigation Sections */}
+                                        <div className="md:col-span-2">
+                                            <div className="grid grid-cols-1 sm:grid-cols-4 gap-8">
+                                                {/* Research Section */}
+                                                <NavSection
+                                                    title="MAGLEV Research"
+                                                    items={['Super Conductors', 'Electro Magnetic Suspension', 'Electro Magnetic Suspension']}
+                                                />
+
+                                                <NavSection
+                                                    title="Products"
+                                                    items={['Atxlab', 'Atxhub', 'Atxcloud']}
+                                                />
+
+                                                <NavSection
+                                                    title="Services"
+                                                    items={['Software', 'Cloud', 'Reasearch And Development(R&D)']}
+                                                />
+
+                                                {/* Company Section */}
+                                                <NavSection
+                                                    title="Company"
+                                                    items={["Founder's Letter"]}
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                        
+                    </div>)}   
             </header>
 
             {/* Hero Section */}
@@ -398,21 +447,7 @@ export default function Home() {
                     </div>
 
                     <div className="relative">
-                        {/* <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                        {galleryImages.map((column, colIndex) => (
-                            <div key={colIndex} className="grid gap-4">
-                                {column.map((image, imgIndex) => (
-                                    <div key={imgIndex} className="rounded-xl overflow-hidden">
-                                        <img
-                                            className="h-auto max-w-full hover:scale-105 transition-transform duration-300"
-                                            src={image.src}
-                                            alt={image.alt}
-                                        />
-                                    </div>
-                                ))}
-                            </div>
-                        ))}
-                    </div> */}
+            
 
                         <main className="py-16">
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-16">
@@ -492,40 +527,7 @@ export default function Home() {
                                     </div>
                                 </div>
                             </div>
-                            {/* <div className={`${theme.bgCard} p-8 rounded-2xl transition-colors duration-500 shadow-lg`}>
-                        <div className="space-y-6">
-                            <div>
-                                <label htmlFor="name" className={`block text-sm font-medium ${theme.textMuted} transition-colors duration-500`}>Full Name</label>
-                                <input
-                                    type="text"
-                                    id="name"
-                                    className={`mt-1 block w-full ${isDark ? 'bg-gray-800 text-white' : 'bg-gray-100 text-gray-900'} border-transparent rounded-md py-2 px-3 focus:ring-2 ${isDark ? 'focus:ring-[#9DA7D0]' : 'focus:ring-[#6B7AA1]'} transition-all duration-300`}
-                                />
-                            </div>
-                            <div>
-                                <label htmlFor="email" className={`block text-sm font-medium ${theme.textMuted} transition-colors duration-500`}>Email Address</label>
-                                <input
-                                    type="email"
-                                    id="email"
-                                    className={`mt-1 block w-full ${isDark ? 'bg-gray-800 text-white' : 'bg-gray-100 text-gray-900'} border-transparent rounded-md py-2 px-3 focus:ring-2 ${isDark ? 'focus:ring-[#9DA7D0]' : 'focus:ring-[#6B7AA1]'} transition-all duration-300`}
-                                />
-                            </div>
-                            <div>
-                                <label htmlFor="message" className={`block text-sm font-medium ${theme.textMuted} transition-colors duration-500`}>Message</label>
-                                <textarea
-                                    id="message"
-                                    rows={4}
-                                    className={`mt-1 block w-full ${isDark ? 'bg-gray-800 text-white' : 'bg-gray-100 text-gray-900'} border-transparent rounded-md py-2 px-3 focus:ring-2 ${isDark ? 'focus:ring-[#9DA7D0]' : 'focus:ring-[#6B7AA1]'} transition-all duration-300`}
-                                ></textarea>
-                            </div>
-                            <button
-                                type="submit"
-                                className={`w-full ${isDark ? 'bg-[#9DA7D0] hover:bg-[#8B93BC]' : 'bg-[#6B7AA1] hover:bg-[#5A6890]'} text-white font-semibold py-3 px-8 rounded-lg transition-all duration-300`}
-                            >
-                                Send Message
-                            </button>
-                        </div>
-                    </div> */}
+                
                         </div>
                     </div>
                 </div>
