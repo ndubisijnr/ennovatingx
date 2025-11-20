@@ -89,7 +89,7 @@ export default function Home() {
 
     const carouselItems = [
         {
-            image: "/IMG_2752.JPG",
+            image: "/IMG_2770.JPG",
             title: "Exploring Lenz Law",
             type: "image",
             description: "Bridging the gap between retro charm and modern power.",
@@ -358,7 +358,7 @@ export default function Home() {
                                                 {item.type === 'video' && (
                                                     <video
                                                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                                                        src='./public/VID-20220628-WA0034.mp4'
+                                                        src='/VID-20220628-WA0034.mp4'
                                                         controls
                                                         muted
                                                         autoPlay
