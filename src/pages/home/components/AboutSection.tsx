@@ -1,3 +1,6 @@
+import SectionHeader from '../../../components/ui/SectionHeader';
+import StatCard from '../../../components/ui/StatCard';
+import IconCard from '../../../components/ui/IconCard';
 
 export default function AboutSection() {
   const stats = [
@@ -33,26 +36,15 @@ export default function AboutSection() {
   return (
     <section id="about" className="py-20 bg-gray-900 text-white">
       <div className="container mx-auto px-6 lg:px-8">
-        {/* Company Overview */}
-        <div className="text-center mb-20">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            About EnnovatingX
-          </h2>
-          <p className="text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed mb-12">
-            EnnovatingX is the world's leading superconductivity and magnetic technology company, 
-            revolutionizing transportation, energy, and industrial systems through zero-resistance 
-            electromagnetic solutions. Our breakthrough innovations in magnetic levitation and 
-            superconducting systems are transforming how industries operate and consume energy.
-          </p>
-        </div>
+        <SectionHeader
+          title="About EnnovatingX"
+          subtitle="EnnovatingX is the world's leading superconductivity and magnetic technology company, revolutionizing transportation, energy, and industrial systems through zero-resistance electromagnetic solutions. Our breakthrough innovations in magnetic levitation and superconducting systems are transforming how industries operate and consume energy."
+        />
 
         {/* Stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-20">
           {stats.map((stat, index) => (
-            <div key={index} className="text-center">
-              <div className="text-4xl md:text-5xl font-bold text-blue-400 mb-2">{stat.number}</div>
-              <div className="text-gray-300">{stat.label}</div>
-            </div>
+            <StatCard key={index} number={stat.number} label={stat.label} />
           ))}
         </div>
 
@@ -97,6 +89,7 @@ export default function AboutSection() {
                 </div>
               </div>
             ))}
+          </div>
           </div>
         </div>
       </div>

@@ -3,11 +3,16 @@ import type { RouteObject } from "react-router-dom";
 import NotFound from "../pages/NotFound";
 import Home from "../pages/home/page";
 import Projects from "../pages/projects/page";
+import AuthFlow from "../pages/auth/page";
 
 const routes: RouteObject[] = [
   {
     path: "/",
     element: <Home />,
+  },
+  {
+    path: "/auth",
+    element: <AuthFlow />,
   },
   {
     path: "/projects",
