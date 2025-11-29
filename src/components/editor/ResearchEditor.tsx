@@ -1,22 +1,15 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useTheme } from '../../contexts/ThemeContext';
 import {
-  Bold,
-  Italic,
-  Underline,
-  AlignLeft,
-  AlignCenter,
-  AlignRight,
-  List,
-  ListOrdered,
-  Link,
-  Image,
   Save,
   ArrowLeft,
   MoreVertical,
-  FileText
+  FileText,
 } from 'lucide-react';
 import Button from '../ui/Button';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
+import './quill-custom.css';
 
 interface ResearchEditorProps {
   articleId?: string;
@@ -39,39 +32,42 @@ export default function ResearchEditor({
   const [isSaving, setIsSaving] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
   const [wordCount, setWordCount] = useState(0);
-  const contentRef = useRef<HTMLDivElement>(null);
+
+  // Quill modules configuration
+  const modules = useMemo(() => ({
+    toolbar: [
+      [{ 'header': [1, 2, 3, false] }],
+      ['bold', 'italic', 'underline', 'strike'],
+      [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+      [{ 'indent': '-1'}, { 'indent': '+1' }],
+      ['link', 'image'],
+      [{ 'align': [] }],
+      ['clean']
+    ],
+  }), []);
+
+  const formats = [
+    'header',
+    'bold', 'italic', 'underline', 'strike',
+    'list', 'bullet', 'indent',
+    'link', 'image',
+    'align'
+  ];
 
   useEffect(() => {
-    // Count words
-    const text = contentRef.current?.innerText || '';
-    const words = text.trim().split(/\s+/).filter(word => word.length > 0);
+    const text = content.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
+    const words = text ? text.split(' ').filter((w) => w.length > 0) : [];
     setWordCount(words.length);
   }, [content]);
 
-  const execCommand = (command: string, value?: string) => {
-    document.execCommand(command, false, value);
-    contentRef.current?.focus();
-  };
-
   const handleSave = async (status: 'draft' | 'published') => {
     setIsSaving(true);
-    const htmlContent = contentRef.current?.innerHTML || '';
     
     // Simulate API call
     setTimeout(() => {
-      onSave(title, htmlContent, status);
+      onSave(title, content, status);
       setIsSaving(false);
     }, 800);
-  };
-
-  const insertLink = () => {
-    const url = prompt('Enter URL:');
-    if (url) execCommand('createLink', url);
-  };
-
-  const insertImage = () => {
-    const url = prompt('Enter image URL:');
-    if (url) execCommand('insertImage', url);
   };
 
   return (
@@ -124,135 +120,27 @@ export default function ResearchEditor({
         </div>
       </header>
 
-      {/* Toolbar */}
-      <div className={`${theme.bgCard} border-b ${theme.border} sticky top-[73px] z-10`}>
-        <div className="container mx-auto px-6 py-3">
-          <div className="flex flex-wrap items-center gap-2">
-            {/* Text Formatting */}
-            <div className="flex items-center gap-1 border-r border-gray-300 dark:border-gray-700 pr-2">
-              <button
-                onClick={() => execCommand('bold')}
-                className={`p-2 rounded hover:${theme.bgAlt} ${theme.text} transition-colors duration-200`}
-                title="Bold"
-              >
-                <Bold className="w-4 h-4" />
-              </button>
-              <button
-                onClick={() => execCommand('italic')}
-                className={`p-2 rounded hover:${theme.bgAlt} ${theme.text} transition-colors duration-200`}
-                title="Italic"
-              >
-                <Italic className="w-4 h-4" />
-              </button>
-              <button
-                onClick={() => execCommand('underline')}
-                className={`p-2 rounded hover:${theme.bgAlt} ${theme.text} transition-colors duration-200`}
-                title="Underline"
-              >
-                <Underline className="w-4 h-4" />
-              </button>
-            </div>
-
-            {/* Alignment */}
-            <div className="flex items-center gap-1 border-r border-gray-300 dark:border-gray-700 pr-2">
-              <button
-                onClick={() => execCommand('justifyLeft')}
-                className={`p-2 rounded hover:${theme.bgAlt} ${theme.text} transition-colors duration-200`}
-                title="Align Left"
-              >
-                <AlignLeft className="w-4 h-4" />
-              </button>
-              <button
-                onClick={() => execCommand('justifyCenter')}
-                className={`p-2 rounded hover:${theme.bgAlt} ${theme.text} transition-colors duration-200`}
-                title="Align Center"
-              >
-                <AlignCenter className="w-4 h-4" />
-              </button>
-              <button
-                onClick={() => execCommand('justifyRight')}
-                className={`p-2 rounded hover:${theme.bgAlt} ${theme.text} transition-colors duration-200`}
-                title="Align Right"
-              >
-                <AlignRight className="w-4 h-4" />
-              </button>
-            </div>
-
-            {/* Lists */}
-            <div className="flex items-center gap-1 border-r border-gray-300 dark:border-gray-700 pr-2">
-              <button
-                onClick={() => execCommand('insertUnorderedList')}
-                className={`p-2 rounded hover:${theme.bgAlt} ${theme.text} transition-colors duration-200`}
-                title="Bullet List"
-              >
-                <List className="w-4 h-4" />
-              </button>
-              <button
-                onClick={() => execCommand('insertOrderedList')}
-                className={`p-2 rounded hover:${theme.bgAlt} ${theme.text} transition-colors duration-200`}
-                title="Numbered List"
-              >
-                <ListOrdered className="w-4 h-4" />
-              </button>
-            </div>
-
-            {/* Insert */}
-            <div className="flex items-center gap-1">
-              <button
-                onClick={insertLink}
-                className={`p-2 rounded hover:${theme.bgAlt} ${theme.text} transition-colors duration-200`}
-                title="Insert Link"
-              >
-                <Link className="w-4 h-4" />
-              </button>
-              <button
-                onClick={insertImage}
-                className={`p-2 rounded hover:${theme.bgAlt} ${theme.text} transition-colors duration-200`}
-                title="Insert Image"
-              >
-                <Image className="w-4 h-4" />
-              </button>
-            </div>
-
-            {/* Font Size */}
-            <select
-              onChange={(e) => execCommand('fontSize', e.target.value)}
-              className={`ml-2 px-2 py-1 rounded ${theme.bgAlt} ${theme.text} border ${theme.border} text-sm focus:outline-none`}
-            >
-              <option value="3">Normal</option>
-              <option value="1">Small</option>
-              <option value="5">Large</option>
-              <option value="7">Huge</option>
-            </select>
-          </div>
-        </div>
-      </div>
-
-      {/* Editor */}
+      {/* Quill Editor */}
       <main className="container mx-auto px-6 py-8">
-        <div className={`max-w-4xl mx-auto ${theme.bgCard} rounded-xl shadow-lg p-8 md:p-12 min-h-[600px]`}>
-          {/* Title */}
+        <div className={`max-w-4xl mx-auto ${theme.bgCard} rounded-xl shadow-lg p-6 md:p-8`}>
           <input
             type="text"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             placeholder="Article Title"
-            className={`w-full text-4xl font-bold ${theme.text} bg-transparent border-none outline-none mb-8 placeholder:${theme.textMuted}`}
+            className={`w-full text-4xl font-bold ${theme.text} bg-transparent border-none outline-none mb-6 placeholder:${theme.textMuted}`}
           />
-
-          {/* Content */}
-          <div
-            ref={contentRef}
-            contentEditable
-            suppressContentEditableWarning
-            className={`min-h-[400px] ${theme.text} prose prose-lg max-w-none focus:outline-none`}
-            style={{
-              wordBreak: 'break-word',
-              whiteSpace: 'pre-wrap'
-            }}
-            dangerouslySetInnerHTML={{ __html: initialContent }}
-            onInput={(e) => setContent(e.currentTarget.innerHTML)}
-          >
+          
+          <div className={`quill-wrapper ${theme.text}`}>
+            <ReactQuill
+              theme="snow"
+              value={content}
+              onChange={setContent}
+              modules={modules}
+              formats={formats}
+              placeholder="Start writing your research here..."
+              className={`min-h-[400px] ${theme.text}`}
+            />
           </div>
         </div>
       </main>

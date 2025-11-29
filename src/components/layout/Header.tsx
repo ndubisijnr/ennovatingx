@@ -2,14 +2,14 @@ import { useState } from 'react';
 import { ChevronDown, ShoppingCart, Menu, Moon, Sun, LogIn } from 'lucide-react';
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 import { useTheme } from '../../contexts/ThemeContext';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 interface NavSectionProps {
   title: string;
-  items: string[];
+  items: string[] | {page:string, link:string}[];
 }
 
-function NavSection({ title, items }: NavSectionProps) {
+function NavSection({ title, items, }: NavSectionProps) {
   const { theme } = useTheme();
   
   return (
@@ -18,14 +18,21 @@ function NavSection({ title, items }: NavSectionProps) {
         {title}
       </h3>
       <div className="space-y-1">
-        {items.map((item, index) => (
-          <button
-            key={index}
-            className={`block w-full text-left py-2 text-sm ${theme.text} hover:${theme.bgAlt} rounded-md transition-colors duration-200 cursor-pointer`}
-          >
-            {item}
-          </button>
-        ))}
+        {items.map((item, index) => {
+          const isObject = typeof item === 'object';
+          const linkTo = isObject ? item.link : '#';
+          const displayText = isObject ? item.page : item;
+          
+          return (
+            <Link 
+              to={linkTo}
+              key={index}
+              className={`block w-full text-left py-2 text-sm ${theme.text} hover:${theme.bgAlt} rounded-md transition-colors duration-200 cursor-pointer`}
+            >
+              {displayText}
+            </Link>
+          );
+        })}
       </div>
     </div>
   );
@@ -85,7 +92,10 @@ export default function Header() {
                       />
                       <NavSection
                         title="Company"
-                        items={["Founder's Letter"]}
+                        items={[
+                          {page:"Founder's Letter", link:"/founders-note"},
+                          {page:"Research Papers", link:"/research"}
+                        ]}
                       />
                     </div>
                   </div>

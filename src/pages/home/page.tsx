@@ -7,6 +7,42 @@ import Carousel from '../../components/Carousel';
 import type { CarouselItem } from '../../components/Carousel';
 import ContactInfoItem from '../../components/ui/ContactInfoItem';
 import { MapPin, Mail, Phone } from 'lucide-react';
+import { useEffect, useRef } from 'react';
+
+function AnimatedSection({ children, className = '', delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
+  const sectionRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setTimeout(() => {
+              entry.target.classList.add('animate-fade-in-up');
+            }, delay);
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, [delay]);
+
+  return (
+    <div ref={sectionRef} className={`opacity-0 ${className}`}>
+      {children}
+    </div>
+  );
+}
 
 function HomeContent() {
   const { theme } = useTheme();
@@ -97,13 +133,16 @@ function HomeContent() {
 
       <HeroSection />
 
-      <Carousel
+      <AnimatedSection delay={100}>
+        <Carousel
         items={carouselItems}
         title="What We're Up To"
         subtitle="Immerse yourself in the cutting edge of technology and innovation. Here's a glimpse into our latest projects."
       />
+      </AnimatedSection>
 
       {/* ATXLAB Section */}
+      <AnimatedSection delay={200}>
       <section className={`py-24 transition-colors duration-500 relative overflow-hidden`}>
         <video
           src='/20220701_095229.mp4'
@@ -126,8 +165,10 @@ function HomeContent() {
           <div className="relative h-[500px]"></div>
         </div>
       </section>
+      </AnimatedSection>
 
       {/* MAGLEV Information Section */}
+      <AnimatedSection delay={300}>
       <section className={`py-24 transition-colors duration-500 relative overflow-hidden`}>
         <div className="container mx-auto px-6 gap-16 items-center relative z-10">
           <div className='text-center'>
@@ -190,6 +231,7 @@ function HomeContent() {
           </div>
         </div>
       </section>
+      </AnimatedSection>
 
       <Footer />
     </div>

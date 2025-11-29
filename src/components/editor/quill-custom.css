@@ -1,0 +1,79 @@
+/* Custom Quill theme integration */
+.quill-wrapper .ql-toolbar {
+  border-radius: 0.5rem 0.5rem 0 0;
+  border-color: inherit;
+}
+
+.quill-wrapper .ql-container {
+  border-radius: 0 0 0.5rem 0.5rem;
+  border-color: inherit;
+  font-size: 1.125rem;
+  min-height: 400px;
+}
+
+.quill-wrapper .ql-editor {
+  min-height: 400px;
+  padding: 1rem;
+}
+
+.quill-wrapper .ql-editor.ql-blank::before {
+  color: rgba(156, 163, 175, 0.6);
+  font-style: normal;
+}
+
+/* Dark mode support */
+.dark .quill-wrapper .ql-toolbar,
+.dark .quill-wrapper .ql-container {
+  background-color: transparent;
+  border-color: rgba(75, 85, 99, 0.3);
+}
+
+.dark .quill-wrapper .ql-stroke {
+  stroke: #9ca3af;
+}
+
+.dark .quill-wrapper .ql-fill {
+  fill: #9ca3af;
+}
+
+.dark .quill-wrapper .ql-picker-label {
+  color: #9ca3af;
+}
+
+.dark .quill-wrapper .ql-editor {
+  color: #e5e7eb;
+}
+
+/* Light mode */
+.quill-wrapper .ql-stroke {
+  stroke: #4b5563;
+}
+
+.quill-wrapper .ql-fill {
+  fill: #4b5563;
+}
+
+.quill-wrapper .ql-picker-label {
+  color: #4b5563;
+}
+
+/* Active toolbar buttons */
+.quill-wrapper .ql-toolbar button:hover,
+.quill-wrapper .ql-toolbar button.ql-active {
+  color: #9DA7D0;
+}
+
+.dark .quill-wrapper .ql-toolbar button:hover,
+.dark .quill-wrapper .ql-toolbar button.ql-active {
+  color: #9DA7D0;
+}
+
+.quill-wrapper .ql-toolbar button:hover .ql-stroke,
+.quill-wrapper .ql-toolbar button.ql-active .ql-stroke {
+  stroke: #9DA7D0;
+}
+
+.quill-wrapper .ql-toolbar button:hover .ql-fill,
+.quill-wrapper .ql-toolbar button.ql-active .ql-fill {
+  fill: #9DA7D0;
+}
