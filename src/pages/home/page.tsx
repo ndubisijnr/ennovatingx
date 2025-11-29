@@ -8,6 +8,7 @@ import type { CarouselItem } from '../../components/Carousel';
 import ContactInfoItem from '../../components/ui/ContactInfoItem';
 import { MapPin, Mail, Phone } from 'lucide-react';
 import { useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 
 function AnimatedSection({ children, className = '', delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -56,7 +57,7 @@ function HomeContent() {
       alt: "A desk with vintage technology like a Commodore computer and a Game Boy, bathed in vibrant pink and blue neon lights, retro-futuristic style."
     },
     {
-      image: "/VID-20220628-WA0032.mp4",
+      image: "http://ennovatingx.com.s3-website-us-east-1.amazonaws.com/VID-20220628-WA0032.mp4",
       title: "Exploring Magnetic Fields",
       type: "video",
       description: "Exploring the future of human-computer interfaces.",
@@ -98,7 +99,7 @@ function HomeContent() {
       content: [
         "We are not something you come across every day. We exist to make heads turn. At the end of the day; this is what people will be talking about.",
         "We are ENX(ATXLAB) and we provide magnetic levitation technology to businesses, agencies, designers and tinkers.",
-        "ENX(ATXLAB) is a tech lab focused on engineering revolutionary solutions across MAGLEV, AI, robotics, advanced systems, human-machine interfaces, and future-driven research. We combine imagination, computation, and raw innovation to shape what comes after what's possible."
+        "ENX(ATXLAB) is a tech lab focused on engineering revolutionary solutions across MAGLEV, and future-driven research. We combine imagination, computation, and raw innovation to shape what comes after what's possible."
       ]
     },
     {
@@ -128,12 +129,85 @@ function HomeContent() {
   ];
 
   return (
-    <div className={`${theme.bg} ${theme.text} min-h-screen font-sans transition-colors duration-500`}>
+    <div className={`${theme.text} min-h-screen font-sans transition-colors duration-500`}>
       <Header />
 
       <HeroSection />
 
+      {/* Equationized Innovation Section (moved before carousel) */}
       <AnimatedSection delay={100}>
+        <section className={`py-20 md:py-24 ${theme.bg} transition-colors duration-500 relative`}> 
+          <div className="absolute inset-0 pointer-events-none opacity-40 blur-3xl" aria-hidden>
+            <div className="bg-gradient-to-r from-violet-500/20 via-fuchsia-500/10 to-sky-500/20 w-full h-full" />
+          </div>
+          <div className="container mx-auto px-6">
+            <div className="max-w-5xl mx-auto text-center mb-10">
+              <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight">We Build · We Innovate</h2>
+              <p className={`${theme.textMuted} mt-4 md:mt-5 text-base md:text-lg`}>Framed as a clear equation of impact.</p>
+            </div>
+            <div className={`relative max-w-6xl mx-auto ${theme.bgCard} rounded-3xl border ${theme.border} shadow-xl p-8 md:p-12`}> 
+              {/* Top divider styled like a fraction bar */}
+              <div className="absolute left-8 right-8 -top-0.5 h-px bg-gradient-to-r from-transparent via-current to-transparent opacity-30" />
+
+              {/* Equation-like layout */}
+              <div className="relative z-10 flex flex-col items-center justify-center gap-6">
+                <div className="flex items-center justify-center flex-wrap gap-4 md:gap-6 leading-none">
+                  <span className={`text-3xl md:text-5xl font-mono ${theme.text}`}>Build</span>
+                  <span className={`text-3xl md:text-5xl font-mono ${theme.text}`}>+</span>
+                  <span className={`text-3xl md:text-5xl font-mono ${theme.text}`}>Innovate</span>
+                  <span className={`text-3xl md:text-5xl font-mono ${theme.text}`}>=</span>
+                  <span className={`text-3xl md:text-5xl font-mono ${theme.text}`}>{'{X}'}</span>
+                </div>
+
+                <div className={`mt-2 text-sm md:text-base ${theme.textMuted}`}>
+                  Where {'{X}'} can be anything: Products, Systems, Research, Experiences.
+                </div>
+
+                {/* Expanded form */}
+                <div className="mt-8 w-full grid grid-cols-1 md:grid-cols-3 gap-6">
+                  <div className={`rounded-2xl border ${theme.border} p-6 hover:shadow-lg transition-shadow`}> 
+                    <div className={`text-xl md:text-2xl font-mono ${theme.text}`}>Build {'→'} {'{X}₁'}</div>
+                    <p className={`${theme.textMuted} mt-2`}>From concept to prototype: hardware, software, platforms.</p>
+                  </div>
+                  <div className={`rounded-2xl border ${theme.border} p-6 hover:shadow-lg transition-shadow`}> 
+                    <div className={`text-xl md:text-2xl font-mono ${theme.text}`}>Innovate {'→'} {'{X}₂'}</div>
+                    <p className={`${theme.textMuted} mt-2`}>New methods, new interfaces, new models that redefine possible.</p>
+                  </div>
+                  <div className={`rounded-2xl border ${theme.border} p-6 hover:shadow-lg transition-shadow`}> 
+                    <div className={`text-xl md:text-2xl font-mono ${theme.text}`}>{'{X}'} {'='} {'{X}₁'} {'∪'} {'{X}₂'}</div>
+                    <p className={`${theme.textMuted} mt-2`}>Unified outcomes: deployed solutions, published research, tangible impact.</p>
+                  </div>
+                </div>
+                
+              </div>
+            </div>
+          </div>
+        </section>
+      </AnimatedSection>
+
+      {/* Founder's Note Preview (before carousel) */}
+      <AnimatedSection delay={120}>
+        <section className={`py-16 transition-colors duration-500`}>
+          <div className="container mx-auto px-6">
+            <div className={`max-w-5xl mx-auto rounded-2xl border ${theme.bg} ${theme.border} p-8 md:p-10 shadow-md`}>
+              <div className="flex flex-col md:flex-row gap-6 md:gap-10 items-start md:items-center">
+                <div className="flex-1">
+                  <span className={`${theme.accent} font-semibold tracking-widest`}>
+                    Founder's Note
+                  </span>
+                  <p className={`${theme.text} mt-4`}> The original vision Ebuka and I had as founders {new Date()?.getFullYear() - 2021} years ago, was - Ennovatingx will be a
+                            'Super Research Institute,' primarily dedicated to exploring the science of magnetic
+                            levitation. We would come to find out about MAGLEV and Superconductors  {new Date()?.getFullYear() - 2016} years ago, after trying to
+                            build a toy car that we thought could be powered by magnets.....   <Link to="/founders-note" className='underline text-blue-400'>Read More</Link></p>
+                </div>
+                
+              </div>
+            </div>
+          </div>
+        </section>
+      </AnimatedSection>
+
+      <AnimatedSection delay={150}>
         <Carousel
         items={carouselItems}
         title="What We're Up To"
@@ -145,7 +219,7 @@ function HomeContent() {
       <AnimatedSection delay={200}>
       <section className={`py-24 transition-colors duration-500 relative overflow-hidden`}>
         <video
-          src='/20220701_095229.mp4'
+          src='http://ennovatingx.com.s3-website-us-east-1.amazonaws.com/20220701_095229.mp4'
           autoPlay
           muted
           loop
@@ -157,8 +231,8 @@ function HomeContent() {
             <span className={`${theme.accent} font-semibold tracking-widest transition-colors duration-500`}>
               ATXLAB
             </span>
-            <h2 className="text-4xl font-bold mt-2 mb-6">We Can Make It Float Too.</h2>
-            <p className={`${theme.text} mb-8 transition-colors duration-500 max-w-sm min-w-sm`}>
+            <h2 className="text-4xl font-bold mt-2 mb-6 text-white">We Can Make It Float Too.</h2>
+            <p className={`text-white mb-8 transition-colors duration-500 max-w-sm min-w-sm`}>
               We Research, Design, Build, Test, And Prototype Levitating Technology. Just Think About What You Would Like To Levitate.
             </p>
           </div>
@@ -169,7 +243,7 @@ function HomeContent() {
 
       {/* MAGLEV Information Section */}
       <AnimatedSection delay={300}>
-      <section className={`py-24 transition-colors duration-500 relative overflow-hidden`}>
+      <section className={`py-24 ${theme.bg} transition-colors duration-500 relative overflow-hidden`}>
         <div className="container mx-auto px-6 gap-16 items-center relative z-10">
           <div className='text-center'>
             <span className={`${theme.accent} font-semibold tracking-widest transition-colors duration-500`}>
@@ -232,6 +306,8 @@ function HomeContent() {
         </div>
       </section>
       </AnimatedSection>
+
+      
 
       <Footer />
     </div>

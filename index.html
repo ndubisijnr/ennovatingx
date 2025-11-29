@@ -27,8 +27,12 @@
     
     <!-- Font Awesome -->
     <script src="https://kit.fontawesome.com/your-kit-id.js" crossorigin="anonymous"></script>
+    <!-- Spline Viewer Web Component -->
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@latest/build/spline-viewer.js"></script>
   </head>
   <body>
+    <!-- Fixed background Spline scene -->
+    <spline-viewer url="https://prod.spline.design/JxAHR64vfi3lY7cM/scene.splinecode" class="fixed inset-0 z-[-1]" style="pointer-events: none;"></spline-viewer>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
     

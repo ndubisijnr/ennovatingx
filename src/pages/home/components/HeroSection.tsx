@@ -46,7 +46,7 @@ export default function HeroSection() {
                 <h1 className="text-gradient bg-gradient-to-r font-extrabold from-[#FFF] to-[#999999] bg-clip-text text-transparent text-4xl md:text-5xl lg:text-[70px] max-w-[1000px]  lg:leading-[90px]">
                   We Are <span className='text-[#9DA7D0]'>{displayText}</span>
                   <span className="inline-block w-1 h-8 md:h-12 bg-[#9DA7D0] ml-1 animate-pulse"></span>
-                  <span className="block my-2">21st Century Technology</span>
+                  <span className="block my-2">21st Century Tech For Africa.</span>
 
                 </h1>
 

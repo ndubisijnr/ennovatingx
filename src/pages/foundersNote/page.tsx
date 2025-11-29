@@ -2,19 +2,24 @@ import { ThemeProvider } from '../../contexts/ThemeContext';
 import { useTheme } from '../../contexts/ThemeContext';
 import Header from '../../components/layout/Header';
 import Footer from '../../components/layout/Footer';
+import { useEffect } from 'react';
 
 function FoundersNoteContent() {
     const { theme } = useTheme();
 
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
     return (
-        <div className={`${theme.bg} ${theme.text} min-h-screen font-sans transition-colors duration-500`}>
+        <div className={` ${theme.text} min-h-screen font-sans transition-colors duration-500`}>
             <Header />
             
             <main className="container mx-auto px-6 pt-32 pb-16">
                 <div className="max-w-4xl mx-auto">
                     {/* Header */}
                     <div className="mb-12 text-center">
-                        <h1 className={`text-5xl md:text-6xl font-bold ${theme.text} mb-4`}>
+                        <h1 className={`text-5xl md:text-6xl font-bold text-white mb-4`}>
                             Founder's Note
                         </h1>
                         <div className={`w-32 h-1 ${theme.accentBg} mx-auto`}></div>
@@ -23,17 +28,17 @@ function FoundersNoteContent() {
                     {/* Content */}
                     <article className={`${theme.bgCard} rounded-2xl shadow-xl p-8 md:p-12 space-y-6`}>
                         <p className={`${theme.text} text-lg leading-relaxed`}>
-                            The original vision Ebuka and I had as founders 4 years ago, was - Ennovatingx will be a
+                            The original vision Ebuka and I had as founders {new Date()?.getFullYear() - 2021} years ago, was - Ennovatingx will be a
                             'Super Research Institute,' primarily dedicated to exploring the science of magnetic
                             levitation.
                         </p>
 
                         <p className={`${theme.text} text-lg leading-relaxed`}>
-                            We would come to find out about MAGLEV and Superconductors 9 years ago, after trying to
+                            We would come to find out about MAGLEV and Superconductors {new Date()?.getFullYear() - 2016} years ago, after trying to
                             build a toy car that we thought could be powered by magnets.
                         </p>
 
-                        <p className={`${theme.text} text-lg leading-relaxed`}>
+                        <p className={`${theme.text} text-lg`}>
                             Ennovatingx is not a conventional company, nor do we intend to become one. From the very
                             start, our singular mission has been clear: to discover room-temperature
                             superconductivity.

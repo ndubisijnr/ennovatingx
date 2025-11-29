@@ -106,13 +106,13 @@ export default function Header() {
         </div>
 
         <div className="flex items-center space-x-4">
-          <button
+          {/* <button
             onClick={() => navigate('/auth')}
             className={`hidden md:flex items-center gap-2 px-4 py-2 rounded-lg ${theme.accentBg} text-white hover:opacity-90 transition-opacity duration-300`}
           >
             <LogIn className="w-4 h-4" />
             <span>Sign In</span>
-          </button>
+          </button> */}
           <button
             onClick={toggleTheme}
             className={`${theme.textMuted} hover:${theme.text} transition-colors duration-300 cursor-pointer p-2 rounded-full hover:bg-gray-700/20`}
