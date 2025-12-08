@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /auth
+Disallow: /admin
+Crawl-delay: 1
+
+Sitemap: https://ennovatingx.com/sitemap.xml

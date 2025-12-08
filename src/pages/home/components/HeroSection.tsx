@@ -1,7 +1,10 @@
 import {useState, useEffect} from "react";
-
+import { AnimatedSection } from "../page";
+import { useTheme } from '../../../contexts/ThemeContext';
+import { Link } from "react-router-dom";
 
 export default function HeroSection() {
+  const { theme } = useTheme();
   const [displayText, setDisplayText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
   const [loopNum, setLoopNum] = useState(0);
@@ -52,6 +55,28 @@ export default function HeroSection() {
 
               </div>
             </div>
+               {/* Founder's Note Preview (before carousel) */}
+          <AnimatedSection delay={120}>
+            <section className={`transition-colors duration-500`}>
+              <div className="container">
+                <div className={`max-w-5xl  rounded-2xl border ${theme.bg} ${theme.border} p-8 md:p-10 shadow-md`}>
+                  <div className="flex flex-col md:flex-row gap-6 md:gap-10 items-start md:items-center">
+                    <div className="flex-1">
+                      <span className={`${theme.accent} font-semibold tracking-widest`}>
+                        Founder's Note
+                      </span>
+                      <p className={`${theme.text} mt-4`}>  The original vision Ebuka and I had as founders {new Date()?.getFullYear() - 2021} years ago was simple: EnnovatingX would be a
+                            'Super Research Institute,' primarily dedicated to exploring the science of magnetic
+                            levitation.   We discovered MAGLEV and superconductors {new Date()?.getFullYear() - 2016} years ago while attempting to
+                            build a toy car powered by magnets.  <Link to="/founders-note" className='underline text-blue-400'>Read More</Link></p>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </section>
+          </AnimatedSection>
+
           </div>
 
         </section>

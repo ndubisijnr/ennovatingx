@@ -6,6 +6,8 @@ import Projects from "../pages/projects/page";
 import AuthFlow from "../pages/auth/page";
 import FounderNote from "../pages/foundersNote/page";
 import Research from "../pages/research/page";
+import Xlab from "../pages/products/xlab/page";
+import Xhub from "../pages/products/xhub/page";
 
 const routes: RouteObject[] = [
   {
@@ -27,6 +29,14 @@ const routes: RouteObject[] = [
   {
     path: "/founders-note",
     element: <FounderNote />,
+  },
+  {
+    path: "/products/xlab",
+    element: <Xlab />,
+  },
+  {
+    path: "/products/xhub",
+    element: <Xhub />,
   },
   {
     path: "*",

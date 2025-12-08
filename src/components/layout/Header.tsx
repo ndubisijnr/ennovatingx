@@ -41,12 +41,11 @@ function NavSection({ title, items, }: NavSectionProps) {
 export default function Header() {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const { isDark, toggleTheme, theme } = useTheme();
-  const navigate = useNavigate();
 
   return (
     <header className={`fixed top-0 left-0 w-full ${theme.header} backdrop-blur-md z-50 transition-colors duration-500`}>
       <nav className="container mx-auto px-6 py-4 flex gap-5 justify-between items-center">
-        <div className="flex items-center space-x-2">
+      <Link to="/">  <div className="flex items-center space-x-2">
           <div className="w-10 h-10">
             <img
               className="w-full h-full object-contain"
@@ -56,6 +55,7 @@ export default function Header() {
           </div>
           <span className="text-xl font-bold tracking-wider">ENNOVATINGX</span>
         </div>
+        </Link>
 
         <div className="hidden md:flex items-center space-x-8 w-full">
           <div className={`hover:${theme.accent} w-1 border border-black dark:border-white h-6 bg-black dark:bg-white transition-colors duration-300 cursor-pointer font-extrabold`}></div>
@@ -84,12 +84,15 @@ export default function Header() {
                       />
                       <NavSection
                         title="Products"
-                        items={['Atxlab', 'Atxhub', 'Atxcloud']}
+                        items={[
+                          {page:"Xlab (Research & Development)", link:"/products/xlab"},
+                          {page:"Xhub (Software as a Service)", link:"/products/xhub"}
+                        ]}
                       />
-                      <NavSection
+                      {/* <NavSection
                         title="Services"
                         items={['Software', 'Cloud', 'Research And Development(R&D)']}
-                      />
+                      /> */}
                       <NavSection
                         title="Company"
                         items={[
@@ -105,7 +108,7 @@ export default function Header() {
           </div>
         </div>
 
-        <div className="flex items-center space-x-4">
+        <div className="flex items-center space-x-2">
           {/* <button
             onClick={() => navigate('/auth')}
             className={`hidden md:flex items-center gap-2 px-4 py-2 rounded-lg ${theme.accentBg} text-white hover:opacity-90 transition-opacity duration-300`}
@@ -129,11 +132,11 @@ export default function Header() {
       </nav>
 
       {showMobileMenu && (
-        <div className="items-center space-x-8 w-full">
-          <div className="w-full p-6">
-            <div className="gap-8">
-              <div className="flex items-start justify-center md:col-span-1">
-                <div className="w-48 h-48">
+        <div className={`md:hidden ${theme.bgCard} border-t ${theme.border} max-h-[calc(100vh-80px)] overflow-y-auto`}>
+          <div className="container mx-auto px-6 py-6">
+            <div className="space-y-6">
+              <div className="flex items-center justify-center">
+                <div className="w-32 h-32">
                   <DotLottieReact
                     src="https://lottie.host/159397d6-164c-4a40-b321-20082ac9efc1/Xsnn0gyoVb.lottie"
                     loop
@@ -142,25 +145,29 @@ export default function Header() {
                 </div>
               </div>
 
-              <div className="md:col-span-2">
-                <div className="grid grid-cols-1 sm:grid-cols-4 gap-8">
-                  <NavSection
-                    title="MAGLEV Research"
-                    items={['Super Conductors', 'Electro Magnetic Suspension', 'Electro Dynamic Suspension']}
-                  />
-                  <NavSection
-                    title="Products"
-                    items={['Atxlab', 'Atxhub', 'Atxcloud']}
-                  />
-                  <NavSection
-                    title="Services"
-                    items={['Software', 'Cloud', 'Research And Development(R&D)']}
-                  />
-                  <NavSection
-                    title="Company"
-                    items={["Founder's Letter"]}
-                  />
-                </div>
+              <div className="space-y-6">
+                <NavSection
+                  title="MAGLEV Research"
+                  items={['Super Conductors', 'Electro Magnetic Suspension', 'Electro Dynamic Suspension']}
+                />
+                <NavSection
+                  title="Products"
+                  items={[
+                    {page:"Xlab (Research & Development)", link:"/products/xlab"},
+                    {page:"Xhub (Software as a Service)", link:"/products/xhub"}
+                  ]}
+                />
+                {/* <NavSection
+                  title="Services"
+                  items={['Software', 'Cloud', 'Research And Development(R&D)']}
+                /> */}
+                <NavSection
+                  title="Company"
+                  items={[
+                    {page:"Founder's Letter", link:"/founders-note"},
+                    {page:"Research Papers", link:"/research"}
+                  ]}
+                />
               </div>
             </div>
           </div>

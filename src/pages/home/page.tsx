@@ -5,12 +5,9 @@ import Footer from '../../components/layout/Footer';
 import HeroSection from './components/HeroSection';
 import Carousel from '../../components/Carousel';
 import type { CarouselItem } from '../../components/Carousel';
-import ContactInfoItem from '../../components/ui/ContactInfoItem';
-import { MapPin, Mail, Phone } from 'lucide-react';
 import { useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
 
-function AnimatedSection({ children, className = '', delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
+export function AnimatedSection({ children, className = '', delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
   const sectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -93,46 +90,75 @@ function HomeContent() {
     },
   ];
 
-  const contentSections = [
-    {
-      title: "We are ENX(ATXLAB)",
-      content: [
-        "We are not something you come across every day. We exist to make heads turn. At the end of the day; this is what people will be talking about.",
-        "We are ENX(ATXLAB) and we provide magnetic levitation technology to businesses, agencies, designers and tinkers.",
-        "ENX(ATXLAB) is a tech lab focused on engineering revolutionary solutions across MAGLEV, and future-driven research. We combine imagination, computation, and raw innovation to shape what comes after what's possible."
-      ]
-    },
-    {
-      title: "MAGLEV For Agencies",
-      content: [
-        "The same applies to magnetic levitation as a marketing tool because you can create a situation where people see something that shouldn't be possible, therefore triggering interest on the spot. You can imagine what the sight of a floating object does in combination with social media."
-      ]
-    },
-    {
-      title: "MAGLEV For Business",
-      content: [
-        "Next to that, levitation technology can power your business in a unique way. By floating your product in mid-air it will be isolated from the world around it and therefore it will attract maximum attention."
-      ]
-    },
-    {
-      title: "MAGLEV For Designers",
-      content: [
-        "Furthermore, the concept of Maglev technology can hold a significant value for designers. On the one hand it can focus the attention to your design as a means of presentation. On the other hand, floating technology can become an integrated part of your design as a feature."
-      ]
-    },
-    {
-      title: "MAGLEV For Tinkers",
-      content: [
-        "In the end, levitation technology is just a lot of fun and anybody with a love for technology can tinker with our products."
-      ]
-    }
-  ];
+  
 
   return (
     <div className={`${theme.text} min-h-screen font-sans transition-colors duration-500`}>
       <Header />
 
       <HeroSection />
+
+      {/* Conglomerate Clarity Strip */}
+      <AnimatedSection delay={80}>
+        <section className={`py-10 ${theme.bg} transition-colors duration-500`}>
+          <div className="container mx-auto px-6">
+            <div className={`w-full ${theme.bgCard} border ${theme.border} rounded-2xl shadow-md p-6 md:p-8 flex flex-col md:flex-row items-start md:items-center gap-6`}>
+              <div className="flex-1">
+                <p className={`${theme.textMuted} uppercase tracking-[0.25em] text-xs font-semibold mb-2`}>EnnovatingX</p>
+                <h2 className="text-2xl md:text-3xl font-bold leading-snug">
+                  We operate deep-tech ventures across MAGLEV R&D and SaaS Platforms.
+                </h2>
+                <p className={`${theme.textMuted} mt-3`}>A holding company (think Alphabet-style) powering multiple ventures with shared research, engineering, and product teams.</p>
+              </div>
+              <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
+                <a href="/products/xlab" className={`flex-1 sm:flex-none px-5 py-3 rounded-lg ${theme.accentBg} text-white font-semibold text-center hover:opacity-90 transition-all`}>Explore Xlab</a>
+                <a href="/products/xhub" className={`flex-1 sm:flex-none px-5 py-3 rounded-lg border ${theme.border} font-semibold text-center hover:${theme.accentBg} hover:text-white transition-all`}>Explore Xhub</a>
+              </div>
+            </div>
+          </div>
+        </section>
+      </AnimatedSection>
+
+      <AnimatedSection delay={150}>
+        <Carousel
+        items={carouselItems}
+        title="What We're Up To"
+        subtitle="Immerse yourself in the cutting edge of technology and innovation. Here's a glimpse into our latest projects."
+      />
+      </AnimatedSection>
+
+      {/* What We Do Trio */}
+      {/* <AnimatedSection delay={120}>
+        <section className={`py-14 ${theme.bg} transition-colors duration-500`}>
+          <div className="container mx-auto px-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {[
+                {
+                  title: 'MAGLEV R&D',
+                  description: 'Levitating systems, superconductivity, and field control for next-gen mobility and display.',
+                  link: '/products/xlab'
+                },
+              
+                {
+                  title: 'SaaS Platforms (Xhub)',
+                  description: 'Cloud-native products that operationalize our research for teams and enterprises.',
+                  link: '/products/xhub'
+                }
+              ].map((item, idx) => (
+                <Link
+                  to={item.link}
+                  key={idx}
+                  className={`${theme.bgCard} border ${theme.border} rounded-2xl p-6 hover:shadow-xl transition-all duration-300 block`}
+                >
+                  <h3 className="text-xl font-bold mb-2">{item.title}</h3>
+                  <p className={theme.textMuted}>{item.description}</p>
+                  <span className={`mt-4 inline-flex items-center gap-2 font-semibold ${theme.text}`}>Learn more →</span>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      </AnimatedSection> */}
 
       {/* Equationized Innovation Section (moved before carousel) */}
       <AnimatedSection delay={100}>
@@ -143,7 +169,7 @@ function HomeContent() {
           <div className="container mx-auto px-6">
             <div className="max-w-5xl mx-auto text-center mb-10">
               <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight">We Build · We Innovate</h2>
-              <p className={`${theme.textMuted} mt-4 md:mt-5 text-base md:text-lg`}>Framed as a clear equation of impact.</p>
+              <p className={`${theme.textMuted} mt-4 md:mt-5 text-base md:text-lg`}>Think of X as a placeholder for anything worth innovating.</p>
             </div>
             <div className={`relative max-w-6xl mx-auto ${theme.bgCard} rounded-3xl border ${theme.border} shadow-xl p-8 md:p-12`}> 
               {/* Top divider styled like a fraction bar */}
@@ -160,7 +186,7 @@ function HomeContent() {
                 </div>
 
                 <div className={`mt-2 text-sm md:text-base ${theme.textMuted}`}>
-                  Where {'{X}'} can be anything: Products, Systems, Research, Experiences.
+                  Where {'{X}'} = Ventures we build and operate: Xlab (R&D), Xhub (SaaS), and frontier research.
                 </div>
 
                 {/* Expanded form */}
@@ -185,127 +211,8 @@ function HomeContent() {
         </section>
       </AnimatedSection>
 
-      {/* Founder's Note Preview (before carousel) */}
-      <AnimatedSection delay={120}>
-        <section className={`py-16 transition-colors duration-500`}>
-          <div className="container mx-auto px-6">
-            <div className={`max-w-5xl mx-auto rounded-2xl border ${theme.bg} ${theme.border} p-8 md:p-10 shadow-md`}>
-              <div className="flex flex-col md:flex-row gap-6 md:gap-10 items-start md:items-center">
-                <div className="flex-1">
-                  <span className={`${theme.accent} font-semibold tracking-widest`}>
-                    Founder's Note
-                  </span>
-                  <p className={`${theme.text} mt-4`}> The original vision Ebuka and I had as founders {new Date()?.getFullYear() - 2021} years ago, was - Ennovatingx will be a
-                            'Super Research Institute,' primarily dedicated to exploring the science of magnetic
-                            levitation. We would come to find out about MAGLEV and Superconductors  {new Date()?.getFullYear() - 2016} years ago, after trying to
-                            build a toy car that we thought could be powered by magnets.....   <Link to="/founders-note" className='underline text-blue-400'>Read More</Link></p>
-                </div>
-                
-              </div>
-            </div>
-          </div>
-        </section>
-      </AnimatedSection>
-
-      <AnimatedSection delay={150}>
-        <Carousel
-        items={carouselItems}
-        title="What We're Up To"
-        subtitle="Immerse yourself in the cutting edge of technology and innovation. Here's a glimpse into our latest projects."
-      />
-      </AnimatedSection>
-
-      {/* ATXLAB Section */}
-      <AnimatedSection delay={200}>
-      <section className={`py-24 transition-colors duration-500 relative overflow-hidden`}>
-        <video
-          src='http://ennovatingx.com.s3-website-us-east-1.amazonaws.com/20220701_095229.mp4'
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover opacity-60"
-        />
-        <div className="container mx-auto px-6 grid md:grid-cols-2 gap-16 items-center relative z-10">
-          <div>
-            <span className={`${theme.accent} font-semibold tracking-widest transition-colors duration-500`}>
-              ATXLAB
-            </span>
-            <h2 className="text-4xl font-bold mt-2 mb-6 text-white">We Can Make It Float Too.</h2>
-            <p className={`text-white mb-8 transition-colors duration-500 max-w-sm min-w-sm`}>
-              We Research, Design, Build, Test, And Prototype Levitating Technology. Just Think About What You Would Like To Levitate.
-            </p>
-          </div>
-          <div className="relative h-[500px]"></div>
-        </div>
-      </section>
-      </AnimatedSection>
-
-      {/* MAGLEV Information Section */}
-      <AnimatedSection delay={300}>
-      <section className={`py-24 ${theme.bg} transition-colors duration-500 relative overflow-hidden`}>
-        <div className="container mx-auto px-6 gap-16 items-center relative z-10">
-          <div className='text-center'>
-            <span className={`${theme.accent} font-semibold tracking-widest transition-colors duration-500`}>
-              ATXLAB
-            </span>
-            <h2 className="text-4xl font-bold mt-2 mb-6">We Are All About MAGLEV</h2>
-            <p className={`${theme.text} mb-8 transition-colors duration-500`}>
-              And We Know How To Make Things Float.
-            </p>
-          </div>
-
-          <main className="py-16">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-16">
-              {contentSections.map((section, index) => (
-                <div key={index} className="space-y-6">
-                  <h2 className="text-3xl font-bold">{section.title}</h2>
-                  {section.content.map((paragraph, pIndex) => (
-                    <p key={pIndex} className="text-gray-600 dark:text-gray-400 leading-relaxed">
-                      {paragraph}
-                    </p>
-                  ))}
-                </div>
-              ))}
-            </div>
-            <div className="text-center mt-24">
-              <p className="text-lg text-gray-600 dark:text-gray-400">
-                Curious what we have to offer?
-              </p>
-            </div>
-          </main>
-
-          {/* Contact Section */}
-          <div className="container mx-auto px-6 flex justify-center gap-16 items-center">
-            <div className='max-w-lg min-w-lg'>
-              <h2 className="text-4xl font-bold mb-4 text-center">
-                Let's Build the Future Together
-              </h2>
-              <p className={`${theme.textMuted} mb-8 transition-colors duration-500 text-center`}>
-                Have a groundbreaking idea or a complex problem? We're here to listen and collaborate. Reach out to us and let's start the conversation.
-              </p>
-              <div className="space-y-6 flex flex-col items-center justify-center w-full">
-                <ContactInfoItem
-                  icon={MapPin}
-                  title="Our Headquarters"
-                  content="Eskişehir, Turkey"
-                />
-                <ContactInfoItem
-                  icon={Mail}
-                  title="Email Us"
-                  content={<a href='mailto:contact@ennovatingx.com'>contact@ennovatingx.com</a>}
-                />
-                <ContactInfoItem
-                  icon={Phone}
-                  title="Call Us"
-                  content="ENGR EBUKA ON (+90) 553 793 51 64"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      </AnimatedSection>
+     
+    
 
       
 
