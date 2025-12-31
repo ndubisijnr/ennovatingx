@@ -1,15 +1,21 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { ThemeProvider, useTheme } from '../../../contexts/ThemeContext';
 import Header from '../../../components/layout/Header';
 import Footer from '../../../components/layout/Footer';
-import { Zap, Code, Microscope, Users, ArrowRight } from 'lucide-react';
+import { Zap, Code, Microscope, Users, ArrowRight, FileVideo2 } from 'lucide-react';
 import { AnimatedSection } from '../../home/page';
 import ContactInfoItem from '../../../components/ui/ContactInfoItem';
+import Modal from '../../../components/ui/Modal';
+
 import { MapPin, Mail, Phone } from 'lucide-react';
+
 
 
 function XlabContent() {
   const { theme } = useTheme();
+  // Modal state for video viewing (must be inside the component)
+  const [modalOpen, setModalOpen] = useState(false);
+  const [activeVideo, setActiveVideo] = useState<string | null>(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -19,7 +25,7 @@ function XlabContent() {
     {
       title: 'Lenz Law Exploration',
       description: 'Demonstrating electromagnetic induction principles with real-world experiments.',
-      media: '/IMG_2770.JPG',
+      media: '/xlab_maglev-1.webp',
       type: 'image' as const
     },
     {
@@ -31,39 +37,17 @@ function XlabContent() {
     {
       title: 'The Meissner Effect',
       description: 'Superconductor expelling magnetic fields - the foundation of MAGLEV technology.',
-      media: '/IMG_2752.JPG',
+      media: '/xlab_maglev-1.webp',
       type: 'image' as const
     },
     {
       title: 'Advanced Prototyping',
       description: 'Cutting-edge instrumentation and testing environments for breakthrough research.',
-      media: '/Inst_0001.jpeg',
+      media: '/xlab_maglev-1.webp',
       type: 'image' as const
     }
   ];
 
-  const features = [
-    {
-      icon: Microscope,
-      title: 'Advanced Research',
-      description: 'Deep exploration into MAGLEV, superconductivity, AI, and robotics with cutting-edge methodologies.'
-    },
-    {
-      icon: Code,
-      title: 'Custom Development',
-      description: 'Bespoke solutions tailored to your unique challenges. From prototypes to production systems.'
-    },
-    {
-      icon: Zap,
-      title: 'Rapid Prototyping',
-      description: 'Quick iteration cycles to test ideas and bring concepts to life faster than traditional methods.'
-    },
-    {
-      icon: Users,
-      title: 'Expert Collaboration',
-      description: 'Work with our team of engineers, researchers, and innovators across multiple domains.'
-    }
-  ];
 
   const contentSections = [
       {
@@ -238,6 +222,60 @@ function XlabContent() {
             />
           </div>
         </div>
+      </section>
+
+
+      {/* Video Gallery Research Section - Archive/File Grid Style */}
+      <section className={`py-20 ${theme.bgCard} rounded-3xl mx-6 md:mx-0 transition-colors duration-500 relative overflow-hidden border ${theme.border}`}>
+        <div className="container mx-auto px-6 relative z-10">
+          <div className="text-center mb-14">
+            <span className={`inline-flex px-4 py-1 text-xs font-semibold tracking-widest uppercase rounded-full ${theme.accentBg} text-white shadow-lg`}>
+              Research Video Archive
+            </span>
+            <h2 className={`text-4xl md:text-5xl font-bold ${theme.text} mt-4`}>MAGLEV Experiments & Prototypes (2022)</h2>
+            <p className={`${theme.textMuted} mt-4 text-lg max-w-3xl mx-auto`}>
+              Explore our R&D archive: each file below is a milestone in our journey to master MAGLEV technology.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            {['v1','v2','v3','v4','v5','v6','v7'].map((v, i) => (
+              <button
+                key={v}
+                className={`group flex flex-col items-center justify-center aspect-[3/4] rounded-xl border-2 ${theme.border} bg-gradient-to-br from-slate-100/80 to-slate-200/60 dark:from-slate-900/80 dark:to-slate-800/60 shadow-md hover:shadow-blue-500/30 hover:border-blue-400 dark:hover:border-blue-400 transition-all duration-300 relative overflow-hidden focus:outline-none`}
+                onClick={() => { setActiveVideo(`/${v}.mp4`); setModalOpen(true); }}
+                aria-label={`Open MAGLEV R&D Video ${i+1}`}
+              >
+                <div className="flex flex-col items-center justify-center h-full w-full p-6">
+                  <FileVideo2 className="w-12 h-12 mb-4 text-blue-500 group-hover:scale-110 transition-transform duration-300" />
+                  <span className="font-mono text-xs text-gray-500 dark:text-gray-400 mb-2">MAGLEV_ARCHIVE</span>
+                  <span className="font-bold text-lg mb-1 text-gray-900 dark:text-white">Experiment {i+1}</span>
+                  <span className="text-xs text-gray-600 dark:text-gray-300 mb-2">{v.toUpperCase()}.mp4</span>
+                  <span className="text-[10px] text-gray-400 dark:text-gray-500">Click to view</span>
+                </div>
+                <div className="absolute top-2 right-2 bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300 px-2 py-0.5 rounded text-[10px] font-semibold shadow">R&D</div>
+              </button>
+            ))}
+          </div>
+        </div>
+        {/* Modal for video viewing */}
+        <Modal isOpen={modalOpen} onClose={() => setModalOpen(false)}>
+          {activeVideo && (
+            <div className="flex flex-col items-center">
+              <video
+                src={activeVideo}
+                controls
+                autoPlay
+                poster="/xlab_maglev-1.webp"
+                className="w-full max-w-xl rounded-xl shadow-lg"
+                style={{ maxHeight: '70vh' }}
+              />
+              <div className="mt-4 text-center">
+                <span className="block font-bold text-lg text-gray-900 dark:text-white">{activeVideo.replace('/','').toUpperCase()}</span>
+                <span className="block text-xs text-gray-500 dark:text-gray-400 mt-1">MAGLEV R&D Archive Video</span>
+              </div>
+            </div>
+          )}
+        </Modal>
       </section>
 
         {/* ATXLAB Section */}

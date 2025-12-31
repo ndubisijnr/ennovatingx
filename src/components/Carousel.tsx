@@ -6,7 +6,6 @@ export interface CarouselItem {
   image: string;
   title: string;
   type: 'image' | 'video';
-  description: string;
   alt: string;
 }
 

@@ -6,6 +6,7 @@ import HeroSection from './components/HeroSection';
 import Carousel from '../../components/Carousel';
 import type { CarouselItem } from '../../components/Carousel';
 import { useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 
 export function AnimatedSection({ children, className = '', delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -50,44 +51,38 @@ function HomeContent() {
       image: "/IMG_2770.JPG",
       title: "Exploring Lenz Law",
       type: "image",
-      description: "Bridging the gap between retro charm and modern power.",
       alt: "A desk with vintage technology like a Commodore computer and a Game Boy, bathed in vibrant pink and blue neon lights, retro-futuristic style."
     },
     {
-      image: "http://ennovatingx.com.s3-website-us-east-1.amazonaws.com/VID-20220628-WA0032.mp4",
+      image: "/v4.mp4",
       title: "Exploring Magnetic Fields",
       type: "video",
-      description: "Exploring the future of human-computer interfaces.",
-      alt: "A glowing, holographic brain interface with neural pathways firing, dark background, cyberpunk aesthetic."
-    },
-    {
-      image: "/Inst_0001.jpeg",
-      title: "Building Cutting Edge Software As A Service (SAAS) Products",
-      type: "image",
-      description: "Exploring the future of human-computer interfaces.",
       alt: "A glowing, holographic brain interface with neural pathways firing, dark background, cyberpunk aesthetic."
     },
     {
       image: "/IMG_2752.JPG",
       title: "The Meissner Effect",
       type: "image",
-      description: "Dive in with us, as we talk about the Meissner effect",
       alt: "A glowing, holographic brain interface with neural pathways firing, dark background, cyberpunk aesthetic."
     },
     {
       image: "/IMG_2752.JPG",
       title: "Electromagnetic Suspension",
       type: "image",
-      description: "Dive in with us, as we talk about the Electromagnetic Suspension (EMS) Principles",
       alt: "A glowing, holographic brain interface with neural pathways firing, dark background, cyberpunk aesthetic."
     },
     {
       image: "/IMG_2752.JPG",
       title: "Electrodynamic Suspension",
       type: "image",
-      description: "Dive in with us, as we talk about the Electrodynamic Suspension (EDS) Principles",
       alt: "A glowing, holographic brain interface with neural pathways firing, dark background, cyberpunk aesthetic."
     },
+    {
+      image: "/Inst_0001.jpeg",
+      title: "Building Cutting Edge Software As A Service (SAAS) Products",
+      type: "image",
+      alt: "A glowing, holographic brain interface with neural pathways firing, dark background, cyberpunk aesthetic."
+    }
   ];
 
   
@@ -111,8 +106,8 @@ function HomeContent() {
                 <p className={`${theme.textMuted} mt-3`}>A holding company (think Alphabet-style) powering multiple ventures with shared research, engineering, and product teams.</p>
               </div>
               <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
-                <a href="/products/xlab" className={`flex-1 sm:flex-none px-5 py-3 rounded-lg ${theme.accentBg} text-white font-semibold text-center hover:opacity-90 transition-all`}>Explore Xlab</a>
-                <a href="/products/xhub" className={`flex-1 sm:flex-none px-5 py-3 rounded-lg border ${theme.border} font-semibold text-center hover:${theme.accentBg} hover:text-white transition-all`}>Explore Xhub</a>
+                <Link to="/products/xlab" className={`flex-1 sm:flex-none px-5 py-3 rounded-lg ${theme.accentBg} text-white font-semibold text-center hover:opacity-90 transition-all`}>Explore Xlab</Link>
+                <Link to="/products/xhub" className={`flex-1 sm:flex-none px-5 py-3 rounded-lg border ${theme.border} font-semibold text-center hover:${theme.accentBg} hover:text-white transition-all`}>Explore Xhub</Link>
               </div>
             </div>
           </div>
