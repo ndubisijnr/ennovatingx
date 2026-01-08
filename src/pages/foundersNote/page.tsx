@@ -28,7 +28,7 @@ function FoundersNoteContent() {
                     {/* Content */}
                     <article className={`${theme.bgCard} rounded-2xl shadow-xl p-8 md:p-12 space-y-6`}>
                         <p className={`${theme.text} leading-relaxed text-sm`}>
-                            The original vision Ebuka and I had as founders {new Date()?.getFullYear() - 2021} years ago was simple: EnnovatingX would be a
+                            The original vision Ebuka and I had as founders {new Date()?.getFullYear() - 2022} years ago was simple: EnnovatingX would be a
                             'Super Research Institute,' primarily dedicated to exploring the science of magnetic
                             levitation.
                         </p>
@@ -45,7 +45,7 @@ function FoundersNoteContent() {
                         </p>
 
                         <p className={`${theme.text} text-sm leading-relaxed`}>
-                            For five years, I waited before taking this bold step—sharing the vision that Ebuka and I
+                            Over the years, I waited before taking this bold step—sharing the vision that Ebuka and I
                             have nurtured with a select few who believe they can help bring it to
                             life. We sought those who not only
                             support the progress of science and technology but also believe in Africa's potential to
@@ -60,7 +60,7 @@ function FoundersNoteContent() {
                         </p>
 
                         <p className={`${theme.text} text-sm leading-relaxed`}>
-                            Ebuka and I are in the business of starting ambitious new ventures. EnnovatingX includes ventures in Xlab (scientific explorations), MAGLEV, AI, autonomous mobility, and space exploration.
+                            Ebuka and I are in the business of starting ambitious new ventures. EnnovatingX includes ventures in XLAB (scientific explorations in MAGLEV) and XHUB in SOFTWARE AND HARDWARE DEVELOPMENT.
                         </p>
 
                         <p className={`${theme.text} text-sm leading-relaxed`}>

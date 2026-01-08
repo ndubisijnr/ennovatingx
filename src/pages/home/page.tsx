@@ -101,7 +101,7 @@ function HomeContent() {
               <div className="flex-1">
                 <p className={`${theme.textMuted} uppercase tracking-[0.25em] text-xs font-semibold mb-2`}>EnnovatingX</p>
                 <h2 className="text-2xl md:text-3xl font-bold leading-snug">
-                  We operate deep-tech ventures across MAGLEV R&D and SaaS Platforms.
+                  We operate deep-tech ventures across MAGLEV R&D and SAAS DEVELOPMENT.
                 </h2>
                 <p className={`${theme.textMuted} mt-3`}>A holding company (think Alphabet-style) powering multiple ventures with shared research, engineering, and product teams.</p>
               </div>
